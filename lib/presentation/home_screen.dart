@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vandad_bloc/bloc/events.dart';
+import 'package:vandad_bloc/bloc/bloc_actions.dart';
 import 'package:vandad_bloc/bloc/persons_bloc.dart';
-import 'package:vandad_bloc/bloc/states.dart';
-import 'package:vandad_bloc/enums.dart';
 import 'package:vandad_bloc/extensions.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -21,7 +19,8 @@ class HomeScreen extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   context.read<PersonsBloc>().add(const LoadPersonsAction(
-                        url: PersonUrl.persons1,
+                        url: person1Url,
+                        loader: getPersons,
                       ));
                 },
                 child: const Text('Load json #1'),
@@ -29,7 +28,8 @@ class HomeScreen extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   context.read<PersonsBloc>().add(const LoadPersonsAction(
-                        url: PersonUrl.persons2,
+                        url: person2Url,
+                        loader: getPersons,
                       ));
                 },
                 child: const Text('Load json #2'),

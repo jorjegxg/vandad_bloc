@@ -1,20 +1,20 @@
+import 'dart:convert';
 import 'dart:developer' as devtools show log;
+import 'dart:io';
 
-import 'enums.dart';
+import 'bloc/person.dart';
 
 extension Log on Object {
   void log() => devtools.log(toString());
 }
 
-extension UrlString on PersonUrl {
-  String urlString() {
-    switch (this) {
-      case PersonUrl.persons1:
-        return 'http://127.0.0.1:5500/api/persons1.json';
-      case PersonUrl.persons2:
-        return 'http://127.0.0.1:5500/api/persons2.json';
-    }
-  }
+Future<Iterable<Person>> getPersons(String url) {
+  return HttpClient()
+      .getUrl(Uri.parse(url))
+      .then((req) => req.close())
+      .then((resp) => resp.transform(utf8.decoder).join())
+      .then((str) => json.decode(str) as List<dynamic>)
+      .then((list) => list.map((e) => Person.fromJson(e)));
 }
 
 extension Subscript<T> on Iterable<T> {

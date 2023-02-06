@@ -1,12 +1,7 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vandad_bloc/bloc/persons_bloc.dart';
 import 'package:vandad_bloc/presentation/home_screen.dart';
-
-import 'models/person.dart';
 
 void main() {
   runApp(BlocProvider(
@@ -25,5 +20,3 @@ class MyApp extends MaterialApp {
           home: const HomeScreen(),
         );
 }
-
-
