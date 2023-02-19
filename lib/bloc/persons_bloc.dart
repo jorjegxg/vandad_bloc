@@ -7,20 +7,20 @@ import 'package:vandad_bloc/bloc/person.dart';
 @immutable
 class FetchResult extends Equatable {
   final Iterable<Person> persons;
-  final bool isRetrievedFromChache;
+  final bool isRetrievedFromCache;
 
   const FetchResult({
     required this.persons,
-    required this.isRetrievedFromChache,
+    required this.isRetrievedFromCache,
   });
 
   @override
   String toString() {
-    return 'FetchResult(isRetrievedFromChache : $isRetrievedFromChache, persons : $persons)';
+    return 'FetchResult(isRetrievedFromChache : $isRetrievedFromCache, persons : $persons)';
   }
 
   @override
-  List<Object?> get props => [persons, isRetrievedFromChache];
+  List<Object?> get props => [persons, isRetrievedFromCache];
 }
 
 class PersonsBloc extends Bloc<LoadPersonsAction, FetchResult?> {
@@ -35,7 +35,7 @@ class PersonsBloc extends Bloc<LoadPersonsAction, FetchResult?> {
           emit(
             FetchResult(
               persons: _cache[url]!,
-              isRetrievedFromChache: true,
+              isRetrievedFromCache: true,
             ),
           );
         } else {
@@ -45,7 +45,7 @@ class PersonsBloc extends Bloc<LoadPersonsAction, FetchResult?> {
           emit(
             FetchResult(
               persons: persons,
-              isRetrievedFromChache: false,
+              isRetrievedFromCache: false,
             ),
           );
         }
